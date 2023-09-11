@@ -8,6 +8,7 @@ Rails.application.routes.draw do
     root 'homes#top'
     get 'customers/mypage' => 'customers#show'
     get 'customers/information/edit' => 'customers#edit'
+    patch 'customers/information' => 'customers#update'
   end
 
   devise_for :admin, skip: [:registrations, :passwords], controllers: {

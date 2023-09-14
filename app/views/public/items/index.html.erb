@@ -2,9 +2,11 @@
 
 <% @items.each do |item| %>
 <div>
-  <p><%= image_tag item.get_image %></p>
-  <p><%= item.name %></p>
-  <p><%= item.price %></p>
+  <%= link_to item_path(item.id) do %>
+    <p><%= image_tag item.get_image %></p>
+    <p><%= item.name %></p>
+    <p><%= item.price %></p>
+  <% end %>
 </div>
 <% end %>
 <%= paginate @items %>

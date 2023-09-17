@@ -14,10 +14,11 @@ class Public::CustomersController < ApplicationController
   end
 
   def confirm_withdraw
+    @customer = Customer.find_by(email: params[:customer][:email])
   end
 
   def withdraw
-    @customer = Customer.find(params[:id])
+    @customer = Customer.find_by(email: params[:customer][:email])
     @customer.update(is_deleted: true)
     reset_session
     flash[:notice] = "退会処理を実行いたしました"

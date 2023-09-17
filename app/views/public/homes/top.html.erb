@@ -6,3 +6,12 @@
 </div>
 
 <h1>新着商品</h1>
+<% @items.each do |item| %>
+  <div>
+    <%= link_to item_path(item.id) do %>
+      <p><%= image_tag item.get_image %></p>
+      <p><%= item.name %></p>
+      <p><%= item.price %></p>
+    <% end %>
+  </div>
+<% end %>

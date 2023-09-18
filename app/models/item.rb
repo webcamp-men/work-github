@@ -1,4 +1,5 @@
 class Item < ApplicationRecord
+  has_many :cart_items, dependent: :destroy
   has_one_attached :image
 
   def get_image
@@ -7,5 +8,9 @@ class Item < ApplicationRecord
       image.attach(io: File.open(file_path), filename: 'default-image.jpg', content_type: 'image/jpeg')
     end
     image
+  end
+
+  def with_tax_price
+    (price * 1.1).floor
   end
 end

@@ -7,12 +7,17 @@ Rails.application.routes.draw do
   scope module: :public do
     root 'homes#top'
     get '/about' => 'homes#about', as: 'about'
-    resources :items, only: [:index, :show]
+    resources :items, only: [:index, :show, :new]
     get 'customers/mypage' => 'customers#show'
     get 'customers/information/edit' => 'customers#edit'
     patch 'customers/information' => 'customers#update'
     get 'customers/confirm_withdraw' => 'customers#confirm_withdraw', as: 'confirm_withdraw'
     patch 'customers/withdraw' => 'customers#withdraw', as: 'withdraw'
+    resources :cart_items, only: [:index, :update, :destroy, :create] do
+      collection do
+        delete 'destroy_all'
+      end
+    end
   end
 
   devise_for :admin, skip: [:registrations, :passwords], controllers: {

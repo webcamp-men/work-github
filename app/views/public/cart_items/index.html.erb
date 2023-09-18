@@ -15,7 +15,7 @@
     <% @cart_items.each do |cart_item| %>
       <tbody>
         <tr>
-          <td><%= @item.name %></td>
+          <td><%= cart_item.item.name %></td>
           <td><%= cart_item.item.with_tax_price %></td>
           <td><%= cart_item.amount %></td>
           <td><%= cart_item.subtotal %></td>
@@ -25,5 +25,5 @@
     <% end %>
   </table>
   <%= link_to "買い物を続ける", items_path %>
-  <p>合計金額</p>
+  合計金額<%= @total.round.to_s(:delimited)%>
 </div>

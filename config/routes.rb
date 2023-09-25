@@ -18,7 +18,12 @@ Rails.application.routes.draw do
         delete 'destroy_all'
       end
     end
-    resources :orders, only: [:new, :index, :show, :create, :confirm, :complete]
+    resources :orders, only: [:new, :index, :show, :create, :confirm, :complete] do
+      collection do
+        post 'confirm'
+        get 'complete'
+      end
+    end
   end
 
   devise_for :admin, skip: [:registrations, :passwords], controllers: {

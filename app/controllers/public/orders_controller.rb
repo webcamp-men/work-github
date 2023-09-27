@@ -10,7 +10,6 @@ class Public::OrdersController < ApplicationController
   def confirm
     @customer = current_customer
     @order = Order.new(order_params)
-    binding.pry
     @order.shipping_postal_code = current_customer.postal_code
     @order.shipping_adddress = current_customer.address
     @order.delivery_name = current_customer.last_name + current_customer.first_name

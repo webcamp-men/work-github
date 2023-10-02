@@ -1,15 +1,17 @@
-<h1>商品編集</h1>
-
-<%= form_with model: @item, url: admin_item_path(@item.id) do |f| %>
-
-  <div>
-      <p>商品画像 <%= f.file_field :get_image, accept: "image/*" %></p>
-      <p>商品名 <%= f.text_field :name %></p>
-      <p>商品説明 <%= f.text_area :introduction %></p>
-      <p>税抜価格 <%= f.number_field :price %>円</p>
+<div class="container">
+  <h3>商品編集</h3>
+  <div class="row">
+    <div class="center-block">
+      <%= form_with model: @item, url: admin_item_path(@item.id) do |f| %>
+        <div>
+          <p>商品画像 <%= f.file_field :get_image, accept: "image/*" %></p>
+          <p>商品名 <%= f.text_field :name %></p>
+          <p>商品説明 <%= f.text_area :introduction %></p>
+          <p>税抜価格 <%= f.number_field :price %>円</p>
+        </div>
+        <%= f.submit "変更を保存" %>
+      <% end %>
+    </div>
   </div>
-
-  <%= f.submit "変更を保存" %>
-
-<% end %>
+</div>
 

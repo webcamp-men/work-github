@@ -1,23 +1,31 @@
-<h1>商品一覧 <%= link_to "＋", new_admin_item_path %></h1>
-
-<div>
-  <table>
-    <thead>
-      <tr>
-        <th>商品ID</th>
-        <th>商品名</th>
-        <th>税抜価格</th>
-      </tr>
-    </thead>
-    <% @items.each do |item| %>
-      <tbody>
-        <tr>
-          <td><%= item.id %></td>
-          <td><%= link_to item.name, admin_item_path(item.id) %></td>
-          <td><%= item.price %></td>
-        </tr>
-      </tbody>
+<div class="container">
+  <h3>
+    商品一覧
+    <%= link_to new_admin_item_path do %>
+      <i class="fa-solid fa-plus"></i>
     <% end %>
-  </table>
-  <%= paginate @items %>
+  </h3>
+  <div class= "center-block">
+    <div class="col-xs-1">
+      <table class="table table-hover table-inverse">
+        <thead>
+          <tr>
+            <th>商品ID</th>
+            <th>商品名</th>
+            <th>税抜価格</th>
+          </tr>
+        </thead>
+        <% @items.each do |item| %>
+          <tbody>
+            <tr>
+              <td><%= item.id %></td>
+              <td><%= link_to item.name, admin_item_path(item.id) %></td>
+              <td><%= item.price %></td>
+            </tr>
+          </tbody>
+        <% end %>
+      </table>
+      <%= paginate @items %>
+    </div>
+  </div>
 </div>

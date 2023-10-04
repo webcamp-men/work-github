@@ -1,18 +1,25 @@
-<h1>注文情報入力画面</h1>
+<div class="container">
+  <h3>注文情報入力画面</h3>
+  <div class="row mx-auto">
+    <%= form_with model: @order, url: confirm_orders_path, method: :post, local: true do |f| %>
+      <div>
+        <h5>支払い方法</h5>
+        <%= f.radio_button :method_of_payment, Order.method_of_payments.key(0) %>
+        <%= f.label :payment_method_credit_card, Order.method_of_payments_i18n[:credit_card] %><br>
+        <%= f.radio_button :method_of_payment, Order.method_of_payments.key(1) %>
+        <%= f.label :payment_method_transfer, Order.method_of_payments_i18n[:transfer] %>
+      </div>
 
-<%= form_with model: @order, url: confirm_orders_path, method: :post, local: true do |f| %>
+      <div>
+        <h5>お届け先</h5>
+        〒<%= current_customer.postal_code %>
+        <%= current_customer.address %><br>
+        <%= current_customer.last_name %><%= current_customer.first_name %>
+      </div>
 
-  <h4>支払い方法</h4>
-  <%= f.radio_button :method_of_payment, Order.method_of_payments.key(0) %>
-  <%= f.label :payment_method_credit_card, Order.method_of_payments_i18n[:credit_card] %><br>
-  <%= f.radio_button :method_of_payment, Order.method_of_payments.key(1) %>
-  <%= f.label :payment_method_transfer, Order.method_of_payments_i18n[:transfer] %>
-
-  <h4>お届け先</h4>
-  〒<%= current_customer.postal_code %>
-  <%= current_customer.address %><br>
-  <%= current_customer.last_name %><%= current_customer.first_name %>
-
-  <br><%= f.submit "確認画面へ進む" %>
-
-<% end %>
+      <div>
+        <%= f.submit "確認画面へ進む", class: "btn btn-primary" %>
+      </div>
+    <% end %>
+  </div>
+</div>
